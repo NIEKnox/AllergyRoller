@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html,
+        * {
+            background: antiquewhite;
+            font-family: "Century Gothic";
+            text-align: center;
+            padding: 2vh;
+            align-content: center;
+
+        }
+        button {
+            font-family: "Cooper Black";
+            text-align: center;
+            padding: 10px;
+            background: coral;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="Page">
+        <div id="AllergyBox">
+            Allergens not rolled.
+        </div>
+
+
+
+        <button id="Generate" onClick="buttonPress(allergies, 'AllergyBox')">
+            Generate statistically accurate allergies and intolerances for your character!
+        </button>
+        <button id="GenerateSOMETHING" onClick="buttonPressForce(allergies, 'AllergyBox')">
+            Generate until you get SOMETHING!
+        </button>
+    </div>
+    <script type="text/javascript">
+        let allergies = {
+            //FoodAllergyChance: 10.8  // Source [1]
+            Shellfish: 2.9,
+            Milk: 1.9,
+            Shrimp: 1.9,
+            Peanut: 1.8,
+            Mollusk: 1.6,
+            Crab: 1.3,
+            Lobster: 1.3,
+            TreeNut: 1.2,
+            FinFish: 0.9,
+            Egg: 0.8,
+            Wheat: 0.8,
+            Almond: 0.7,
+            Hazelnut: 0.6,
+            Soy: 0.6,
+            Walnut: 0.6,
+            Cashew: 0.5,
+            Pecan: 0.5,
+            Pistachio: 0.4,
+            Sesame: 0.2
+        }
+
+        let healthConditions = {
+
+
+
+
+        }
+
+
+        // Get a random number from 0 to 100
+        function getRandomPercent(higherThreshold = null) {
+            // If no value entered, we set the higher threshold to being 100
+            if (higherThreshold === null) {
+                higherThreshold = 100
+            }
+            let returnValue = null
+
+            returnValue = Math.random() * higherThreshold
+
+            return returnValue
+        }
+
+        // See if input number is
+        function compareChance(inputNumber) {
+            let randomNumber = getRandomPercent()
+
+            if (inputNumber < randomNumber) {
+                return false
+            } else {return true}
+        }
+
+        // Feed all allergies in, get list of allergies out
+        function getAllListResults(comparatorList) {
+            // Iterate through allergies
+            let confirmedAffects = []
+            for (const allergy in comparatorList) {
+                const allergyChance = comparatorList[allergy]
+
+                let allergyOutcome = compareChance(allergyChance)
+
+                if (allergyOutcome === true) {
+                    confirmedAffects.push(allergy)
+                }
+            }
+
+            return confirmedAffects
+        }
+
+        function buttonPress(inputList, divID) {
+            let currentResult = getAllListResults(inputList)
+
+            console.log(currentResult)
+
+            let currentElement = document.getElementById(divID)
+
+            let newHTML = ""
+
+            // If we get no allergies
+            if (currentResult.length === 0) {
+                newHTML = "Congratulations/my condolences, you didn't roll anything (in this list)!"
+            } else {
+                newHTML = "The value(s) and probabilit(y/ies) you rolled are:"
+                // Cycle through each allergy
+                for (const item in currentResult) {
+                    // Add linebreak
+                    let currentProbability = inputList[currentResult[item]]
+
+                    newHTML += "<br>" + String(currentResult[item]) + ", population prevalence: " + String(currentProbability) + "%"
+                }
+            }
+            currentElement.innerHTML = newHTML
+            return currentResult.length
+        }
+
+        function buttonPressForce(inputList, divID){
+            currentOutput = buttonPress(inputList, divID)
+            console.log(currentOutput)
+            while (currentOutput < 1) {
+                currentOutput = buttonPress(inputList, divID)
+            }
+
+        }
+
+    </script>
+</body>
+</html>
