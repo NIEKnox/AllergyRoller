@@ -28,14 +28,39 @@
             Allergens not rolled.
         </div>
 
-
-
-        <button id="Generate" onClick="buttonPress(allergies, 'AllergyBox')">
+        <button id="GenerateAllergies" onClick="buttonPress(allergies, 'AllergyBox')">
             Generate statistically accurate allergies and intolerances for your character!
         </button>
-        <button id="GenerateSOMETHING" onClick="buttonPressForce(allergies, 'AllergyBox')">
+        <button id="GenerateAllergiesForced" onClick="buttonPressForce(allergies, 'AllergyBox')">
             Generate until you get SOMETHING!
         </button>
+
+
+        <div id="DisabilitiesBox">
+            Health Conditions not rolled.
+        </div>
+
+        <button id="GenerateDisabilities" onClick="buttonPress(healthConditions, 'DisabilitiesBox')">
+            Generate statistically accurate disabilities for your character!
+        </button>
+        <button id="GenerateDisabilitiesForced" onClick="buttonPressForce(healthConditions, 'DisabilitiesBox')">
+            Generate until you get SOMETHING!
+        </button>
+
+
+        <div id="RollAll">
+            Click me to roll on ALL above tables!
+        </div>
+
+        <button id="GenerateAll" onClick="buttonPress(allergies, 'AllergyBox');buttonPress(healthConditions, 'DisabilitiesBox')">
+            Roll all (statistically accurate)
+        </button>
+
+        <button id="GenerateAllForced" onClick="buttonPressForce(allergies, 'AllergyBox');buttonPressForce(healthConditions, 'DisabilitiesBox')">
+            Roll all (until something comes up on all)
+        </button>
+
+
     </div>
     <script type="text/javascript">
         let allergies = {
@@ -62,9 +87,39 @@
         }
 
         let healthConditions = {
-
-
-
+            // List taken from [2]
+            ADHD: 4.3,  // [3]
+            AIDS_HIV: 0.5,  // [4]
+            Anxiety: 19.1, // [5]
+            Arthritis: 3.6,  // [6]
+            Asthma: 10, // [7]
+            Autism: 2.8, // [8]
+            Back_Pain: 3.5, // [9]
+            Bipolar: 0.5, // [10]
+            // Cancer; not doing this one (yet?)
+            Cerebral_Palsy: 0.23, // [11]
+            Chronic_Fatigue_Syndrome: 0.2, // [12]
+            Cluttering_Speech: 0.6, // [13]
+            Crohns_Disease: 0.8, // [14]
+            Deaf_Profound: 0.1, // [15]
+            Deaf_Hard_of_Hearing: 6.4, // [16]
+            Depression: 4, // [17]
+            Diabetes: 14, // [18]
+            Dwarfism: 0.1, // [19]
+            Dyscalculia: 5, // [2]
+            Dyslexia: 12.5, // [2]
+            Dyspraxia: 7.5, // [2]
+            Endometriosis: 10, // [20]
+            Fibromyalgia: 2, // [21]
+            Irritable_Bowel_Syndrome: 4, // [22]
+            Long_Covid: 3.3, // [23]
+            Migraines: 14, // [24]
+            Multiple_Sclerosis: 0.2, // [25]
+            Sight_Impaired_Mild: 54, // [26]
+            Sight_Impaired_Severe: 2.9, // [27]
+            Sight_Loss_Full: 0.5, // [27]
+            Stutter: 1, // [28]
+            Tourettes: 0.1, // [29]
 
         }
 
